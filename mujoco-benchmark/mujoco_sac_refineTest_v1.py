@@ -64,10 +64,10 @@ def get_args():
     parser.add_argument("--start-timesteps", type=int, default=10000)
     
     # 训练的轮数，默认200
-    parser.add_argument("--epoch", type=int, default=1000)
+    parser.add_argument("--epoch", type=int, default=200)
     
     # 每轮中的时间步数，默认5000
-    parser.add_argument("--step-per-epoch", type=int, default=1000)
+    parser.add_argument("--step-per-epoch", type=int, default=5000)
     
     # 每次收集的时间步数
     parser.add_argument("--step-per-collect", type=int, default=1)
@@ -85,7 +85,7 @@ def get_args():
     parser.add_argument("--training-num", type=int, default=1)
     
     # 测试过程中使用的环境数量，默认是10
-    parser.add_argument("--test-num", type=int, default=10)
+    parser.add_argument("--test-num", type=int, default=1)
     
     # 日志保存路径
     parser.add_argument("--logdir", type=str, default="log")
@@ -284,7 +284,7 @@ if __name__ == "__main__":
     # 随机跑五个种子
     # seeds = [0,1,2,3,4]
     # seeds = [5,6,7,8,9]
-    seeds = [8, 9]
+    seeds = [0]
     tasks = ["HalfCheetah-v4", "Hopper-v4", "Swimmer-v4", "Walker2d-v4", 
              "Ant-v4", "Humanoid-v4", "Reacher-v4", 
              "InvertedPendulum-v4", "InvertedDoublePendulum-v4", 
@@ -299,7 +299,7 @@ if __name__ == "__main__":
     #         test_sac(args)
 
     # 指定某个任务进行实验
-    args.task = 'HumanoidStandup-v4'
+    args.task = 'Ant-v4'
 
     # 指定是否自动调alpha
     args.auto_alpha = False
@@ -314,7 +314,7 @@ if __name__ == "__main__":
     # args.resume_path = "log/Humanoid-v4/sac/0/240716-185405/policy.pth"
 
     # 是否开启Refine训练模式(0 OR -1)
-    args.RefineTrain_Num = 0
+    args.RefineTrain_Num = -1
 
     for seed in seeds:
         args.seed = seed
